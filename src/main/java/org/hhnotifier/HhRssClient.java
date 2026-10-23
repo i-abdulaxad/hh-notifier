@@ -31,12 +31,14 @@ public class HhRssClient {
 		.defaultHeader("User-Agent", "Mozilla/5.0 (compatible; hh-notifier/1.0)")
 		.build();
 
-	public List<Vacancy> search(String area, HhProperties.Keyword keyword, String experience) throws Exception {
+	public List<Vacancy> search(String area, HhProperties.Keyword keyword, String experience, List<String> roles)
+			throws Exception {
+		// no search_field: hh then matches the title, company name and description
 		var uri = UriComponentsBuilder.fromUriString(RSS_URL)
 			.queryParam("text", keyword.query())
 			.queryParam("area", area)
 			.queryParam("experience", experience)
-			.queryParam("search_field", "name")
+			.queryParam("professional_role", roles.toArray())
 			.queryParam("order_by", "publication_time")
 			.queryParam("items_on_page", 100)
 			.encode()

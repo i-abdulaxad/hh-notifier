@@ -23,9 +23,10 @@ class RunOnceRunner implements ApplicationRunner {
 	}
 
 	@Override
-	public void run(ApplicationArguments args) {
-		poller.poll();
-		refresher.refresh();
+	public void run(ApplicationArguments args) throws Exception {
+		// let failures escape so the process exits non-zero and the GitHub run shows red
+		poller.pollOnce();
+		refresher.refreshOnce();
 	}
 
 }

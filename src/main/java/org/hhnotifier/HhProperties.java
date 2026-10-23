@@ -11,6 +11,8 @@ public record HhProperties(
 		String area,
 		List<Keyword> keywords,
 		List<String> experiences,
+		List<String> professionalRoles,
+		Duration maxAge,
 		Duration pollInterval,
 		Path seenFile,
 		Path postedFile,
